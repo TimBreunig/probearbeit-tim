@@ -21,61 +21,61 @@
   --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /*   Neutrals   */
-  --black: #212429;
-  --gray-900: #212429;
-  --gray-700: #707070;
-  --gray-500: #9C9C9C;
-  --gray-100: #f2f2f2;
-  --white: #ffffff;
+  --color-black: #212429;
+  --color-gray-900: #212429;
+  --color-gray-700: #707070;
+  --color-gray-500: #9C9C9C;
+  --color-gray-70: #f2f2f2;
+  --color-white: #ffffff;
 
   /*   Main   */
-  --main-green: #00915a;
-  --main-green-light: #d1f562;
-  --main-blue: #0096d2;
-  --main-gradient: linear-gradient(to right, var(--main-green-light), var(--main-green), var(--main-blue));
+  --color-main-green: #00915a;
+  --color-main-green-light: #b0cb52;
+  --color-main-blue: #0096d2;
+  --color-main-gradient: linear-gradient(to right, var(--main-green-light), var(--main-green), var(--main-blue));
 
   /*   Product A   */
-  --product-a-yellow-dark: #fbb900;
-  --product-a-yellow-light: #ffd800;
-  --product-a-gradient: radial-gradient(var(--product-a-yellow-light), var(--product-a-yellow-dark));
+  --color-product-a-yellow-dark: #fbb900;
+  --color-product-a-yellow-light: #ffd800;
+  --color-product-a-gradient: radial-gradient(var(--product-a-yellow-light), var(--product-a-yellow-dark));
 
   /*   Product B   */
-  --product-b-red-dark: #e30011;
-  --product-b-red-light: #ea5906;
-  --product-b-blue-dark: #0072cf;
-  --product-b-blue-light: #289af7;
-  --product-b-gradient: radial-gradient(var(--product-b-blue-light), var(--product-b-blue-dark));
+  --color-product-b-red-dark: #e30011;
+  --color-product-b-red-light: #ea5906;
+  --color-product-b-blue-dark: #0072cf;
+  --color-product-b-blue-light: #289af7;
+  --color-product-b-gradient: radial-gradient(var(--product-b-blue-light), var(--product-b-blue-dark));
 
   /*   Product C   */
-  --product-c-green: #80ba27;
-  --product-c-yellow: #f7ec69;
-  --product-c-gradient: radial-gradient(var(--product-c-yellow), var(--product-c-green));
+  --color-product-c-green: #80ba27;
+  --color-product-c-yellow: #f7ec69;
+  --color-product-c-gradient: radial-gradient(var(--product-c-yellow), var(--product-c-green));
 
-  --product-c-purple: #5a4279;
-  --product-c-purple-light: #cec2d9;
-  --product-c-gradient: radial-gradient(var(--product-c-purple-light), var(--product-c-purple));
+  --color-product-c-purple: #5a4279;
+  --color-product-c-purple-light: #cec2d9;
+  --color-product-c-gradient: radial-gradient(var(--product-c-purple-light), var(--product-c-purple));
 
   /*   Product D   */
-  --product-d-orange: #ef7500;
-  --product-d-orange-light: #fed468;
-  --product-d-green: #00a181;
-  --product-d-gradient: radial-gradient(var(--product-d-orange-light), var(--product-d-orange));
+  --color-product-d-orange: #ef7500;
+  --color-product-d-orange-light: #fed468;
+  --color-product-d-green: #00a181;
+  --color-product-d-gradient: radial-gradient(var(--product-d-orange-light), var(--product-d-orange));
 
   /*   Product E   */
-  --product-e-green-dark: #009e3c;
-  --product-e-green-light: #95c11c;
-  --product-e-gradient: radial-gradient(var(--product-d-green-light), var(--product-d-green-dark));
+  --color-product-e-green-dark: #009e3c;
+  --color-product-e-green-light: #95c11c;
+  --color-product-e-gradient: radial-gradient(var(--product-d-green-light), var(--product-d-green-dark));
 
   /*   Product F   */
-  --product-f-blue-dark: #009cc4;
-  --product-f-blue-light: #1db9de;
-  --product-f-gradient: radial-gradient(var(--product-f-blue-light), var(--product-f-blue-dark));
+  --color-product-f-blue-dark: #009cc4;
+  --color-product-f-blue-light: #1db9de;
+  --color-product-f-gradient: radial-gradient(var(--product-f-blue-light), var(--product-f-blue-dark));
 
   /*   Product G   */
-  --product-g-blue: #004587;
-  --product-g-blue-light: #5897bc;
-  --product-g-red: #cd1719;
-  --product-g-gradient: radial-gradient(var(--product-g-blue-light), var(--product-g-blue));
+  --color-product-g-blue: #004587;
+  --color-product-g-blue-light: #5897bc;
+  --color-product-g-red: #cd1719;
+  --color-product-g-gradient: radial-gradient(var(--product-g-blue-light), var(--product-g-blue));
 }
 
 
@@ -131,7 +131,7 @@
   }
 
   .body {
-    @apply font-normal text-[0.9375rem] leading-6;
+    @apply font-normal bg-white text-[0.9375rem] leading-6;
   }
 
   .link {
