@@ -22,7 +22,7 @@ function Header() {
   return (
     <>
       <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
-        <a href='#'>
+        <a href='/'>
           <img src={logo} alt='Logoips logo' className='h-10'/>
         </a>
 

@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 type NavItemProps = {
@@ -9,17 +10,16 @@ type NavItemProps = {
 
 
 function NavItem({ text, link }: NavItemProps) {
-
   const location = useLocation()
   const isActive = location.pathname === link
 
   return (
-    <a
-      href={link}
-      className='relative group px-3 py-8 '
+    <Link
+      to={link}
+      className='relative group px-3 py-8'
     >
       <span className={`
-          relative
+          button
           text-gray-900
           group-hover:text-main-green-light
           ${isActive ? 'text-main-green' : ''}
@@ -41,7 +41,7 @@ function NavItem({ text, link }: NavItemProps) {
         `}>
         {text}
       </span>
-    </a>
+    </Link>
   )
 }
 
