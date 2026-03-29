@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
 
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @theme {
   --breakpoint-*: initial;
   --breakpoint-sm: 390px;
   --breakpoint-md: 834px;
   --breakpoint-lg: 1440px;
+
+  --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /*   Neutrals   */
   --black: #212429;
@@ -82,5 +93,60 @@
   @variant lg {
     max-width: 1440px;
     padding-inline: 104px;
+  }
+}
+
+
+@layer base {
+  body {
+    @apply m-0 p-0 font-primary;
+  }
+
+  .h1 {
+    @apply font-bold text-[4rem] leading-18;
+    
+    @variant md {
+      @apply font-bold text-[3rem] leading-14;
+    }
+  }
+
+  .h2 {
+    @apply font-normal text-[2rem] leading-10;
+  }
+
+  .h3 {
+    @apply font-bold text-[1.25rem] leading-6;
+  }
+
+  .h4 {
+    @apply font-bold text-[1.125rem] leading-6;
+  }
+
+  .intro {
+    @apply font-light text-[1.25rem] leading-8;
+  }
+
+  .body {
+    @apply font-normal text-[0.9375rem] leading-6;
+  }
+
+  .link {
+    @apply font-bold text-[0.9375rem] leading-6 underline;
+  }
+
+  .button {
+    @apply font-bold text-[0.9375rem] leading-6;
+  }
+
+  .overline {
+    @apply font-normal text-[0.875rem] leading-4 uppercase;
+  }
+
+  .caption {
+    @apply font-normal text-[0.875rem] leading-4;
+  }
+
+  .caption-bold {
+    @apply font-bold text-[0.875rem] leading-4;
   }
 }
