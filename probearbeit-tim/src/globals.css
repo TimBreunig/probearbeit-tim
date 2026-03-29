@@ -1,1 +1,86 @@
 @import "tailwindcss";
+
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 834px;
+  --breakpoint-lg: 1440px;
+
+  /*   Neutrals   */
+  --black: #212429;
+  --gray-900: #212429;
+  --gray-700: #707070;
+  --gray-500: #9C9C9C;
+  --gray-100: #f2f2f2;
+  --white: #ffffff;
+
+  /*   Main   */
+  --main-green: #00915a;
+  --main-green-light: #d1f562;
+  --main-blue: #0096d2;
+  --main-gradient: linear-gradient(to right, var(--main-green-light), var(--main-green), var(--main-blue));
+
+  /*   Product A   */
+  --product-a-yellow-dark: #fbb900;
+  --product-a-yellow-light: #ffd800;
+  --product-a-gradient: radial-gradient(var(--product-a-yellow-light), var(--product-a-yellow-dark));
+
+  /*   Product B   */
+  --product-b-red-dark: #e30011;
+  --product-b-red-light: #ea5906;
+  --product-b-blue-dark: #0072cf;
+  --product-b-blue-light: #289af7;
+  --product-b-gradient: radial-gradient(var(--product-b-blue-light), var(--product-b-blue-dark));
+
+  /*   Product C   */
+  --product-c-green: #80ba27;
+  --product-c-yellow: #f7ec69;
+  --product-c-gradient: radial-gradient(var(--product-c-yellow), var(--product-c-green));
+
+  --product-c-purple: #5a4279;
+  --product-c-purple-light: #cec2d9;
+  --product-c-gradient: radial-gradient(var(--product-c-purple-light), var(--product-c-purple));
+
+  /*   Product D   */
+  --product-d-orange: #ef7500;
+  --product-d-orange-light: #fed468;
+  --product-d-green: #00a181;
+  --product-d-gradient: radial-gradient(var(--product-d-orange-light), var(--product-d-orange));
+
+  /*   Product E   */
+  --product-e-green-dark: #009e3c;
+  --product-e-green-light: #95c11c;
+  --product-e-gradient: radial-gradient(var(--product-d-green-light), var(--product-d-green-dark));
+
+  /*   Product F   */
+  --product-f-blue-dark: #009cc4;
+  --product-f-blue-light: #1db9de;
+  --product-f-gradient: radial-gradient(var(--product-f-blue-light), var(--product-f-blue-dark));
+
+  /*   Product G   */
+  --product-g-blue: #004587;
+  --product-g-blue-light: #5897bc;
+  --product-g-red: #cd1719;
+  --product-g-gradient: radial-gradient(var(--product-g-blue-light), var(--product-g-blue));
+}
+
+
+@utility container {
+  margin-inline: auto;
+  
+  @variant sm {
+    max-width: 390px;
+    padding-inline: 16px;
+  }
+
+  @variant md {
+    max-width: 834px;
+    padding-inline: 32px;
+  }
+
+  @variant lg {
+    max-width: 1440px;
+    padding-inline: 104px;
+  }
+}
