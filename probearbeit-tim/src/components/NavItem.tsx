@@ -1,11 +1,12 @@
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 
-type NavItemProps = {
+export interface NavItemProps {
   text: string
   link: string
-  active?: boolean
+  component?: React.ComponentType // for optional components like mega menus
 }
 
 

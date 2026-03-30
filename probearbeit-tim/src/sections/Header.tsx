@@ -1,9 +1,14 @@
-import logo from '../assets/images/brand/combination_mark_green.svg';
-import menuIcon from '../assets/icons/menu-8 1.svg';
-import NavItem from '../components/NavItem';
+import { useState } from 'react'
+
+import logo from '../assets/images/brand/combination_mark_green.svg'
+import menuIcon from '../assets/icons/menu-8 1.svg'
+
+import MegaMenu from './MegaMenu'
+import NavItem from '../components/NavItem'
+import type { NavItemProps } from '../components/NavItem'
 
 
-const navItems = [
+const navItems: NavItemProps[] = [
   {
     text: 'Blog',
     link: '/blog',
@@ -11,14 +16,17 @@ const navItems = [
   {
     text: 'Products',
     link: '/products',
+    component: MegaMenu,
   },
-    {
+  {
     text: 'About',
     link: '/about',
   },
 ]
 
 function Header() {
+  const [isMegaOpen, setIsMegaOpen] = useState(false)
+
   return (
     <>
       <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
@@ -30,15 +38,30 @@ function Header() {
           <img src={menuIcon} alt='Logoips logo' className='w-12 h-12 p-3.5'/>
         </a>
 
-        <div className='hidden md:flex'>
-          {navItems.map((navItem, index) => (
-            <NavItem
-              key={index}
-              text={navItem.text}
-              link={navItem.link}
-            />
-          ))}
-        </div>
+        <ul className='hidden md:flex'>
+          {navItems.map((item, i) => {
+            const Component = item.component;
+
+            if (Component) {
+              return (
+                <li
+                  key={i}
+                  onMouseEnter={() => setIsMegaOpen(true)}
+                  onMouseLeave={() => setIsMegaOpen(false)}
+                >
+                  <NavItem text={item.text} link={item.link} />
+                  {Component && isMegaOpen && <Component />}
+                </li>
+              )
+            }
+
+            return (
+              <li>
+                <NavItem key={i} {...item} />
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </>
   )
