@@ -1,7 +1,9 @@
+import Hero from '../sections/Hero'
+
 function Home() {
   return (
     <>
-
+      <Hero />
     </>
   )
 }

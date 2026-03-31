@@ -107,10 +107,10 @@
   /*   Text Styles   */
 
   .h1 {
-    @apply font-bold text-[4rem] leading-18;
+    @apply font-bold text-[3rem] leading-14;
     
     @variant md {
-      @apply font-bold text-[3rem] leading-14;
+      @apply font-bold text-[4rem] leading-18;
     }
   }
 
@@ -131,7 +131,7 @@
   }
 
   .body-text {
-    @apply font-normal bg-white text-[0.9375rem] leading-6;
+    @apply font-normal text-[0.9375rem] leading-6;
   }
 
   .link {
