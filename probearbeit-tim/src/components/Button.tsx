@@ -1,12 +1,22 @@
 import React from 'react'
 
-type ButtonProps = {
+
+type BaseProps = {
   children: React.ReactNode
-  variant?: 'default' | 'primary' | 'secondary' | 'underline'
-  size?: 'sm' | 'lg'
   onClick?: () => void
   disabled?: boolean
 }
+
+type ButtonProps =
+  | (BaseProps & {
+      variant?: 'default' | 'primary'
+      size?: 'sm' | 'lg'
+    })
+  | (BaseProps & {
+      variant: 'secondary' | 'underline'
+      size?: 'sm'
+    })
+
 
 export default function Button({
   children,
@@ -42,13 +52,14 @@ export default function Button({
     `,
   }
 
+  // can be extended to ensure that lg cannot be applied to variants 'secondary' and 'underline', according to the style guide
   const sizeClasses = {
-    sm: 'h-10 px-4',
+    sm: `h-10 ${variant === 'underline' ? 'px-0' : 'px-4'}`,
     lg: 'h-12 px-6',
   }
 
   const classes = `
-    box-border border border-transparent rounded-full button cursor-pointer transition-colors duration-300
+    flex flex-row items-center gap-2 box-border border border-transparent rounded-full button cursor-pointer transition-colors duration-300
     ${variantClasses[variant]}
     ${sizeClasses[size]}
   `
