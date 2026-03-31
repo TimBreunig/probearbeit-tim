@@ -65,7 +65,11 @@ export default function Button({
   `
 
   return (
-    <button className={classes} onClick={onClick} disabled={disabled}>
+    <button
+      type='button'
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}>
       {children}
     </button>
   );

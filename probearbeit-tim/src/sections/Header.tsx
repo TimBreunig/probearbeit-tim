@@ -31,7 +31,7 @@ function Header() {
     <>
       <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
         <a href='/'>
-          <img src={logo} alt='Logoips logo' className='h-10'/>
+          <img src={logo} alt='Logoips logo' className='h-8'/>
         </a>
 
         <a className='block md:hidden rounded-full hover:bg-gray-70'>

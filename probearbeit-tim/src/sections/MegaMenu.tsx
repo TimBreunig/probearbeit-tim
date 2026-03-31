@@ -1,8 +1,44 @@
 import Button from '../components/Button'
+import { Link } from 'react-router-dom'
+import type { LinkProps } from '../components/Link'
 
 import ArrowIcon from '../assets/icons/arrow-right.svg?react'
 import ProductATeaser from '../assets/images/products/product-a-teaser.png'
 import ProductBTeaser from '../assets/images/products/product-b-teaser.png'
+
+
+const megaButtons: LinkProps[] = [
+  // Replace placeholder links with individual product pages
+  {
+    text: 'Product A',
+    link: '/products',
+  },
+  {
+    text: 'Product B',
+    link: '/products',
+  },
+  {
+    text: 'Product C',
+    link: '/products',
+  },
+  {
+    text: 'Product D',
+    link: '/products',
+  },
+  {
+    text: 'Product E',
+    link: '/products',
+  },
+  {
+    text: 'Product F',
+    link: '/products',
+  },
+  {
+    text: 'Product G',
+    link: '/products',
+  },
+]
+
 
 
 function MegaMenu() {
@@ -14,27 +50,15 @@ function MegaMenu() {
             Products
           </h2>
           <div className='flex flex-row flex-wrap gap-2'>
-            <Button>
-              Product A
-            </Button>
-            <Button>
-              Product B
-            </Button>
-            <Button>
-              Product C
-            </Button>
-            <Button>
-              Product D
-            </Button>
-            <Button>
-              Product E
-            </Button>
-            <Button>
-              Product F
-            </Button>
-            <Button>
-              Product G
-            </Button>
+            {megaButtons.map((button, i) => (
+              <Link
+                to={button.link}
+              >
+                <Button key={i}>
+                  {button.text}
+                </Button>
+              </Link>
+            ))}
           </div>
         </div>
         <Button variant='underline'>
@@ -60,10 +84,15 @@ function MegaMenu() {
             </p>
           </div>
           <div>
-            <Button size='lg'>
-              <ArrowIcon className='size-5' />
-              Read more
-            </Button>
+            <Link
+                // Replace placeholder link with individual product page
+                to='/products'
+            >
+              <Button size='lg'>
+                <ArrowIcon className='size-5' />
+                Read more
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -85,10 +114,15 @@ function MegaMenu() {
             </p>
           </div>
           <div>
-            <Button size='lg'>
-              <ArrowIcon className='size-5' />
-              <span>Read more</span>
-            </Button>
+            <Link
+                // Replace placeholder link with individual product page
+                to='/products'
+            >
+              <Button size='lg'>
+                <ArrowIcon className='size-5' />
+                Read more
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
