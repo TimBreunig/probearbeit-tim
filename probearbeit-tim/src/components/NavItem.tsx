@@ -11,31 +11,36 @@ function NavItem({ text, link }: LinkProps) {
   return (
     <Link
       to={link}
-      className='relative group px-3 py-8'
-    >
-      <span className={`
-          button
+      className={`
+          block button relative px-3 py-8
+
           text-gray-900
-          group-hover:text-main-green-light
-          ${isActive ? 'text-main-green' : ''}
           transition-colors duration-300 ease-out
 
+          ${isActive ? 'text-main-green' : ''}
+          hover:text-main-green-light
+          
           /* Underline pseudo-element */
           after:absolute
           after:left-0 after:bottom-0
           after:w-full after:h-1
           after:rounded-t-sm
-          after:bg-main-green
-          after:scale-x-0
           after:origin-bottom-left
+          after:scale-x-0
           after:transition-transform after:duration-300 after:ease-out
           
-          /* Hover & Active states */
-          group-hover:after:scale-x-100
+          /* Default color */
+          after:bg-main-green
+
+          /* Show when active */
+          hover:after:scale-x-100
           ${isActive ? 'after:scale-x-100' : ''}
-        `}>
+
+          /* Override active color on hover */
+          hover:after:bg-main-green-light
+        `}
+    >
         {text}
-      </span>
     </Link>
   )
 }

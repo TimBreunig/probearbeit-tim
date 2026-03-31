@@ -28,42 +28,42 @@ function Header() {
   const [isMegaOpen, setIsMegaOpen] = useState(false)
 
   return (
-    <>
-      <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
-        <a href='/'>
-          <img src={logo} alt='Logoips logo' className='h-8'/>
-        </a>
+    <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
+      <a href='/'>
+        <img src={logo} alt='Logoips logo' className='h-8'/>
+      </a>
 
-        <a className='block md:hidden rounded-full hover:bg-gray-70'>
-          <img src={menuIcon} alt='Logoips logo' className='w-12 h-12 p-3.5'/>
-        </a>
+      {/* Mobile Navigation Menu */}
+      <a className='block md:hidden rounded-full hover:bg-gray-70'>
+        <img src={menuIcon} alt='Logoips logo' className='w-12 h-12 p-3.5'/>
+      </a>
 
-        <ul className='hidden md:flex'>
-          {navItems.map((item, i) => {
-            const Component = item.component;
+      {/* Desktop Navigation Menu */}
+      <ul className='hidden md:flex items-center'>
+        {navItems.map((item, i) => {
+          const Component = item.component;
 
-            if (Component) {
-              return (
-                <li
-                  key={i}
-                  onMouseEnter={() => setIsMegaOpen(true)}
-                  onMouseLeave={() => setIsMegaOpen(false)}
-                >
-                  <NavItem text={item.text} link={item.link} />
-                  {Component && isMegaOpen && <Component />}
-                </li>
-              )
-            }
-
+          if (Component) {
             return (
-              <li>
-                <NavItem key={i} {...item} />
+              <li
+                key={i}
+                onMouseEnter={() => setIsMegaOpen(true)}
+                onMouseLeave={() => setIsMegaOpen(false)}
+              >
+                <NavItem text={item.text} link={item.link} />
+                {Component && isMegaOpen && <Component />}
               </li>
             )
-          })}
-        </ul>
-      </div>
-    </>
+          }
+
+          return (
+            <li>
+              <NavItem key={i} {...item} />
+            </li>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 
