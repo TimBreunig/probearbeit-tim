@@ -1,16 +1,10 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import type { LinkProps } from '../components/Link'
 
 
-export interface NavItemProps {
-  text: string
-  link: string
-  component?: React.ComponentType // for optional components like mega menus
-}
-
-
-function NavItem({ text, link }: NavItemProps) {
+function NavItem({ text, link }: LinkProps) {
   const location = useLocation()
   const isActive = location.pathname === link
 

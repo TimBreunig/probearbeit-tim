@@ -5,10 +5,10 @@ import menuIcon from '../assets/icons/menu-8 1.svg'
 
 import MegaMenu from './MegaMenu'
 import NavItem from '../components/NavItem'
-import type { NavItemProps } from '../components/NavItem'
+import type { LinkProps } from '../components/Link'
 
 
-const navItems: NavItemProps[] = [
+const navItems: LinkProps[] = [
   {
     text: 'Blog',
     link: '/blog',
