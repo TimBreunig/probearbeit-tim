@@ -6,7 +6,7 @@ import type { LinkProps } from '../components/Link'
 
 function NavItem({ text, link }: LinkProps) {
   const location = useLocation()
-  const isActive = location.pathname === link
+  const isActive = location.pathname.startsWith(link)
 
   return (
     <Link
@@ -28,16 +28,13 @@ function NavItem({ text, link }: LinkProps) {
           after:origin-bottom-left
           after:scale-x-0
           after:transition-transform after:duration-300 after:ease-out
-          
-          /* Default color */
-          after:bg-main-green
 
-          /* Show when active */
+          /* Hover overrides */
           hover:after:scale-x-100
-          ${isActive ? 'after:scale-x-100' : ''}
-
-          /* Override active color on hover */
           hover:after:bg-main-green-light
+
+          /* Active overrides */
+          ${isActive ? 'after:scale-x-100 after:bg-main-green' : ''}
         `}
     >
         {text}

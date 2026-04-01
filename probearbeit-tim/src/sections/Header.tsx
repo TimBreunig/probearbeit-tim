@@ -28,7 +28,7 @@ function Header() {
   const [isMegaOpen, setIsMegaOpen] = useState(false)
 
   return (
-    <div className='container sticky top-0 h-20 md:h-22 flex justify-between items-center border-b border-gray-70'>
+    <div className='w-full container sticky top-0 h-20 md:h-22 flex justify-between items-center bg-white border-b border-gray-70 z-50'>
       <a href='/'>
         <img src={logo} alt='Logoips logo' className='h-8'/>
       </a>
