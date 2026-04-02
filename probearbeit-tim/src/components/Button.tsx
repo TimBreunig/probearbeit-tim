@@ -4,6 +4,7 @@ import React from 'react'
 type BaseProps = {
   children: React.ReactNode
   onClick?: () => void
+  iconOnly?: boolean
   disabled?: boolean
 }
 
@@ -23,6 +24,7 @@ export default function Button({
   variant = 'default',
   size = 'sm',
   onClick,
+  iconOnly = false,
   disabled = false,
 }: ButtonProps) {
   const variantClasses = {
@@ -54,8 +56,13 @@ export default function Button({
 
   // can be extended to ensure that lg cannot be applied to variants 'secondary' and 'underline', according to the style guide
   const sizeClasses = {
-    sm: `h-10 ${variant === 'underline' ? 'px-0' : 'px-4'}`,
-    lg: 'h-12 px-6',
+    sm: iconOnly
+      ? 'size-10 p-0 justify-center'
+      : `h-10 ${variant === 'underline' ? 'px-0' : 'px-4'}`,
+
+    lg: iconOnly
+      ? 'size-12 p-0 justify-center'
+      : 'h-12 px-6',
   }
 
   const classes = `

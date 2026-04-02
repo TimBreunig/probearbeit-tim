@@ -27,9 +27,10 @@ function Footer() {
       <div className='absolute -top-5'>
         <Button
           variant='default'
+          iconOnly
           onClick={():void => console.log('0')}
         >
-          <ArrowUpIcon className='size-6' />
+          <ArrowUpIcon className='size-5' />
         </Button>
       </div>
       <div className='container flex flex-col md:flex-row items-center px-4 py-6 gap-2 caption-text text-gray-900'>
