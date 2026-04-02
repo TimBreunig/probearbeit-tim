@@ -163,14 +163,14 @@
   }
 
   .overline-text {
-    @apply font-normal text-[0.875rem] leading-4 uppercase;
+    @apply font-normal text-[0.75rem] leading-4 uppercase;
   }
 
-  .caption {
-    @apply font-normal text-[0.875rem] leading-4;
+  .caption-text {
+    @apply font-normal text-[0.75rem] leading-4;
   }
 
-  .caption-bold {
-    @apply font-bold text-[0.875rem] leading-4;
+  .caption-text-bold {
+    @apply font-bold text-[0.75rem] leading-4;
   }
 }
