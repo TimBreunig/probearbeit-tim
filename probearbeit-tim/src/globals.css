@@ -173,4 +173,8 @@
   .caption-text-bold {
     @apply font-bold text-[0.75rem] leading-4;
   }
+
+  footer a {
+    @apply hover:text-black active:text-black transition-colors duration-300 ease-out;
+  }
 }

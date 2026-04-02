@@ -4,7 +4,7 @@ import Button from '../components/Button'
 import type { LinkProps } from '../components/Link'
 import MegaFeature from '../components/MegaFeature'
 
-import ArrowIcon from '../assets/icons/arrow-right.svg?react'
+import ArrowIcon from '../assets/icons/ui/arrow-right.svg?react'
 import ProductATeaser from '../assets/images/products/product-a-teaser.png'
 import ProductBTeaser from '../assets/images/products/product-b-teaser.png'
 

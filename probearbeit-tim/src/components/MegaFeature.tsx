@@ -1,7 +1,7 @@
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
 
-import ArrowIcon from '../assets/icons/arrow-right.svg?react'
+import ArrowIcon from '../assets/icons/ui/arrow-right.svg?react'
 
 
 type MegaFeatureProps = {

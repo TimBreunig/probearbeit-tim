@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import logo from '../assets/images/brand/combination_mark_green.svg'
-import menuIcon from '../assets/icons/menu-8 1.svg'
+import menuIcon from '../assets/icons/ui/menu-8 1.svg'
 
 import MegaMenu from './MegaMenu'
 import NavItem from '../components/NavItem'
