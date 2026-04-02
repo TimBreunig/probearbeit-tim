@@ -28,7 +28,7 @@ function Footer() {
         <Button
           variant='default'
           iconOnly
-          onClick={():void => console.log('0')}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <ArrowUpIcon className='size-5' />
         </Button>
