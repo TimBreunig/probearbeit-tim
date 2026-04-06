@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 
 import MegaMenu from './MegaMenu'
 import Button from '../components/Button'
-import NavItem from '../components/NavItem'
+import NavList from '../components/NavList'
 import type { LinkProps } from '../components/Link'
 
 import logo from '../assets/images/brand/combination_mark_green.svg'
@@ -27,6 +26,7 @@ const navItems: LinkProps[] = [
   },
 ]
 
+
 function Header() {
   const [isMegaOpen, setIsMegaOpen] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -41,7 +41,7 @@ function Header() {
       <Button
         iconOnly
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className='block md:hidden rounded-full hover:bg-gray-70'
+        className='md:hidden rounded-full hover:bg-gray-70'
       >
         {isMobileOpen
           ? <img src={crossIcon} alt='Close Menu' className='w-12 h-12 p-3.5'/>
@@ -51,60 +51,26 @@ function Header() {
       </Button>
 
       <div
-				className={`fixed left-0 right-0 bottom-0 top-20 md:top-22 z-40 bg-white transform transition-transform duration-300 ease-in-out
+				className={`block md:hidden fixed left-0 right-0 bottom-0 top-20 md:top-22 z-40 bg-white transform transition-transform duration-300 ease-in-out
           ${isMobileOpen ? "translate-x-0" : "translate-x-full"}
         `}
 			>
 				<ul className='container flex flex-col items-start'>
-          {navItems.map((item, i) => {
-            const Component = item.component
-
-            if (Component) {
-              return (
-                <li
-                  key={i}
-                  onMouseEnter={() => setIsMegaOpen(true)}
-                  onMouseLeave={() => setIsMegaOpen(false)}
-                >
-                  <NavItem text={item.text} link={item.link} />
-                  {Component && isMegaOpen && <Component />}
-                </li>
-              )
-            }
-
-            return (
-            <li>
-              <NavItem key={i} {...item} />
-            </li>
-          )
-        })}
-      </ul>
-		</div>
+          <NavList
+            items={navItems}
+            isMegaOpen={isMegaOpen}
+            setIsMegaOpen={setIsMegaOpen}
+          />
+        </ul>
+		  </div>
 
       {/* Desktop Navigation Menu */}
       <ul className='hidden md:flex items-center'>
-        {navItems.map((item, i) => {
-          const Component = item.component;
-
-          if (Component) {
-            return (
-              <li
-                key={i}
-                onMouseEnter={() => setIsMegaOpen(true)}
-                onMouseLeave={() => setIsMegaOpen(false)}
-              >
-                <NavItem text={item.text} link={item.link} />
-                {Component && isMegaOpen && <Component />}
-              </li>
-            )
-          }
-
-          return (
-            <li>
-              <NavItem key={i} {...item} />
-            </li>
-          )
-        })}
+        <NavList
+          items={navItems}
+          isMegaOpen={isMegaOpen}
+          setIsMegaOpen={setIsMegaOpen}
+        />
       </ul>
     </div>
   )
