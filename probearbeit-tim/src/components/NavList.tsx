@@ -1,5 +1,6 @@
 import NavItem from './NavItem'
 import type { LinkProps } from './Link'
+import { AnimatePresence, motion } from 'framer-motion'
 
 
 type NavListProps = {
@@ -23,7 +24,19 @@ function NavList({ items, isMegaOpen, setIsMegaOpen }: NavListProps) {
               onMouseLeave={() => setIsMegaOpen(false)}
             >
               <NavItem text={item.text} link={item.link} />
-              {isMegaOpen && <Component />}
+              <AnimatePresence>
+                {isMegaOpen && (
+                  <motion.div
+                    className='absolute left-0 top-full w-full -z-10'
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Component />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </li>
           )
         }
