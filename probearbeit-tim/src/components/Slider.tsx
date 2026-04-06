@@ -30,14 +30,34 @@ export type SliderProps = {
 
 function Slider({ items }: SliderProps) {
   const [filter, setFilter] = useState<'show all' | Category>('show all')
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [thumbSize, setThumbSize] = useState(0)
+  const [trackWidth, setTrackWidth] = useState(0)
   const [isScrollable, setIsScrollable] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
-
+  const trackRef = useRef<HTMLDivElement>(null)
 
 
   const filteredItems =
     filter === 'show all' ? items : items.filter(i => i.category === filter)
+
+
+  // Scroll logic
+  const updateScrollState = useCallback(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const { scrollLeft, scrollWidth, clientWidth } = container
+    const maxScroll = scrollWidth - clientWidth
+
+    const progress = maxScroll > 0 ? Math.min(scrollLeft / maxScroll, 1) : 0
+
+    setScrollProgress(progress)
+    setThumbSize(Math.min(clientWidth / scrollWidth, 1))
+    setTrackWidth(clientWidth)
+    setIsScrollable(scrollWidth > clientWidth + 1)
+  }, [])
 
 
   // Button to scroll right on-click 
@@ -74,9 +94,8 @@ function Slider({ items }: SliderProps) {
 
   // Scroll Handler
   const handleScroll = useCallback(() => {
-    const container = containerRef.current
-    if (!container) return
-  }, [])
+    updateScrollState()
+  }, [updateScrollState])
 
 
   // Scroll Listener
@@ -97,19 +116,11 @@ function Slider({ items }: SliderProps) {
     const container = containerRef.current
     if (!container) return
 
-    const updateSizes = () => {
-      const { clientWidth, scrollWidth } = container
-
-      setIsScrollable(scrollWidth > clientWidth + 1)
-    }
-
-    const observer = new ResizeObserver(updateSizes)
+    const observer = new ResizeObserver(updateScrollState)
     observer.observe(container)
 
-    updateSizes()
-
     return () => observer.disconnect()
-  }, [filteredItems])
+  }, [filteredItems, updateScrollState])
 
 
   // Reset scroll when changing filter
@@ -152,6 +163,22 @@ function Slider({ items }: SliderProps) {
           <ArrowIcon className='size-5' />
         </Button>
       </div>
+
+      {/* Scroll Track */}
+      {thumbSize < 1 && (
+        <div
+          ref={trackRef}
+          className='w-full h-0.5 bg-gray-70 rounded-full relative overflow-hidden'
+        >
+          <div
+            className='h-1 bg-gray-900 rounded-full absolute top-0 left-0'
+            style={{
+              width: `${thumbSize * 100}%`,
+              transform: `translateX(${scrollProgress * (trackWidth - trackWidth * thumbSize)}px)`,
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
