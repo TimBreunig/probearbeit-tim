@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import Button from './Button'
 
@@ -17,11 +18,33 @@ export type SliderProps = {
 }
 
 
-function SliderCard({ item }: { item: CardItem }) {
+const cardVariants = {
+  hidden: { opacity: 0, x: 40 },
+  show: (index: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay: index * 0.1 },
+  }),
+  exit: { opacity: 0, x: -40, transition: { duration: 0.3, ease: 'easeIn' } },
+}
+
+
+function SliderCard({ item, index }: { item: CardItem; index: number }) {
   return (
-    <div className='group relative shrink-0 basis-[calc((1232px-3*18px)/4)] md:basis-[calc((100%-3*18px)/4)] aspect-3/4 rounded-lg snap-start cursor-pointer overflow-hidden'>
-      <img src={item.image} alt={item.alt} className='w-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out' />
-      <Link to='/'>
+    <motion.div
+      variants={cardVariants}
+      custom={index}
+      initial='hidden'
+      animate='show'
+      exit='exit'
+      className='group relative shrink-0 basis-[calc((1232px-3*18px)/4)] md:basis-[calc((100%-3*18px)/4)] aspect-3/4 rounded-lg snap-start cursor-pointer overflow-hidden'
+    >
+      <img
+        src={item.image}
+        alt={item.alt}
+        className='w-full object-cover group-hover:scale-105 transition-transform duration-600 ease-out'
+      />
+      <Link to={item.link}>
         <Button
           variant='primary'
           size='lg'
@@ -30,7 +53,7 @@ function SliderCard({ item }: { item: CardItem }) {
           Lorem Ipsum
         </Button>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

@@ -10,4 +10,7 @@ export default defineConfig({
     svgrPlugin(),
     tailwindcss()
   ],
+  optimizeDeps: {
+    include: ['react/jsx-runtime', 'react/jsx-dev-runtime']
+  }
 })

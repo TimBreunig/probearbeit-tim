@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import Button from './Button'
 import SliderCard from './SliderCard'
@@ -147,6 +148,17 @@ function Slider({ items }: SliderProps) {
   }, [filter])
 
 
+  // Card animation staggering setup
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+
   return (
     <div className='container flex flex-col justify-center gap-4 py-10'>
       {/* Filter Buttons */}
@@ -166,12 +178,20 @@ function Slider({ items }: SliderProps) {
 
       {/* Slider */}
       <div className='relative'>
-        <div
+        <motion.div
+          variants={containerVariants}
+          initial={false}
+          animate='show'
+          exit='hidden'
           ref={containerRef}
           className='flex gap-4.5 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory'
         >
-          {filteredItems.map(item => <SliderCard key={item.link} item={item} />)}
-        </div>
+          <AnimatePresence mode='wait'>
+            {filteredItems.map((item, index) =>
+              <SliderCard key={index} item={item} index={index} />
+            )}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Navigation Buttons */}
         {canScrollPrev && (
