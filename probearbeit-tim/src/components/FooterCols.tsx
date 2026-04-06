@@ -14,8 +14,8 @@ function FooterCols({ heading, hasParent = false, links = [], content }: FooterC
 
   const LinksList = hasLinks ? (
     <ul className='flex flex-col gap-2'>
-      {links.map((link) => (
-        <li key={link.link}>
+      {links.map((link, index) => (
+        <li key={index}>
           <a href={link.link}>{link.text}</a>
         </li>
       ))}
