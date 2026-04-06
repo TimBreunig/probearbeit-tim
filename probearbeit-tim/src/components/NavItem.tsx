@@ -12,7 +12,7 @@ function NavItem({ text, link }: LinkProps) {
     <Link
       to={link}
       className={`
-          block button relative px-3 py-8
+          block button relative md:px-3 py-6 md:py-8
 
           text-gray-900
           transition-colors duration-300 ease-out
