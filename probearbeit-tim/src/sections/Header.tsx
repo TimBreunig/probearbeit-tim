@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import MegaMenu from './MegaMenu'
@@ -32,6 +32,12 @@ function Header() {
   const [isMegaOpen, setIsMegaOpen] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? 'hidden' : ''
+  }, [isMobileOpen])
+
+  
   return (
     <div className='w-full container sticky top-0 h-20 md:h-22 flex justify-between items-center bg-white border-b border-gray-70 z-50'>
       <Link to='/' aria-label='Home Button'>
