@@ -118,6 +118,11 @@
 }
 
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+
 @layer base {
   body {
     @apply m-0 p-0 font-primary ;
