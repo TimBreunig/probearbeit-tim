@@ -6,8 +6,8 @@ import NavList from '../components/NavList'
 import type { LinkProps } from '../components/Link'
 
 import logo from '../assets/images/brand/combination_mark_green.svg'
-import menuIcon from '../assets/icons/ui/menu-8 1.svg'
-import crossIcon from '../assets/icons/ui/e-remove 1.svg'
+import MenuIcon from '../assets/icons/ui/menu-8 1.svg?react'
+import CrossIcon from '../assets/icons/ui/e-remove 1.svg?react'
 
 
 const navItems: LinkProps[] = [
@@ -39,20 +39,21 @@ function Header() {
 
       {/* Mobile Navigation Menu */}
       <Button
+        variant='underline'
         iconOnly
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className='md:hidden rounded-full hover:bg-gray-70'
+        className='md:hidden rounded-full hover:bg-gray-70 active:bg-gray-70'
       >
         {isMobileOpen
-          ? <img src={crossIcon} alt='Close Menu' className='w-12 h-12 p-3.5'/>
-          : <img src={menuIcon} alt='Open Menu' className='w-12 h-12 p-3.5'/>
+          ? <CrossIcon className='size-5'/>
+          : <MenuIcon className='size-5'/>
         }
         
       </Button>
 
       <div
 				className={`block md:hidden fixed left-0 right-0 bottom-0 top-20 md:top-22 z-40 bg-white transform transition-transform duration-300 ease-in-out
-          ${isMobileOpen ? "translate-x-0" : "translate-x-full"}
+          ${isMobileOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
 			>
 				<ul className='container flex flex-col items-start'>

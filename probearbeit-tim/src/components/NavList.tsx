@@ -1,5 +1,5 @@
-import NavItem from '../components/NavItem'
-import type { LinkProps } from '../components/Link'
+import NavItem from './NavItem'
+import type { LinkProps } from './Link'
 
 
 type NavListProps = {
