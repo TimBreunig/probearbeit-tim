@@ -16,7 +16,10 @@ export type TileProps = {
 
 function ProductTile({ name, description, link, color }: TileProps) {
   return(
-    <div className={`col-span-4 flex flex-col ${color} rounded-lg`}>
+    <div
+      aria-label={name}
+      className={`col-span-4 flex flex-col ${color} rounded-lg`}
+    >
       <img
         src={ProductTransparent}
         alt='alt text'
@@ -32,7 +35,7 @@ function ProductTile({ name, description, link, color }: TileProps) {
           </p>
         </div>
         <div>
-          <Link to={link}>
+          <Link to={link} aria-label={`Link to ` + name}>
             <Button variant='primary' iconOnly>
               <ArrowRightIcon className='size-5' />
             </Button>
