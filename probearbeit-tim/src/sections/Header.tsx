@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import MegaMenu from './MegaMenu'
 import Button from '../components/Button'
@@ -33,14 +34,15 @@ function Header() {
 
   return (
     <div className='w-full container sticky top-0 h-20 md:h-22 flex justify-between items-center bg-white border-b border-gray-70 z-50'>
-      <a href='/'>
+      <Link to='/' aria-label='Home Button'>
         <img src={logo} alt='Logoips logo' className='h-8'/>
-      </a>
+      </Link>
 
       {/* Mobile Navigation Menu */}
       <Button
         variant='underline'
         iconOnly
+        aria-label={isMobileOpen ? 'Close Menu' : 'Open Menu'}
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         className='md:hidden rounded-full hover:bg-gray-70 active:bg-gray-70'
       >
