@@ -3,11 +3,11 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import Button from './Button'
 import SliderCard from './SliderCard'
 
-import ArrowIcon from '../assets/icons/ui/arrow-right.svg?react'
+import ArrowLeftIcon from '../assets/icons/ui/arrow-left.svg?react'
+import ArrowRightIcon from '../assets/icons/ui/arrow-right.svg?react'
 
 
 type Category = 'city' | 'forest' | 'water'
-
 
 const categories: Array<'show all' | Category> = [
   'show all',
@@ -28,73 +28,84 @@ export type SliderProps = {
 }
 
 
+// Tolerance buffer for floating-point operations
+const EPSILON = 0.5
+
+
 function Slider({ items }: SliderProps) {
   const [filter, setFilter] = useState<'show all' | Category>('show all')
   const [scrollProgress, setScrollProgress] = useState(0)
   const [thumbSize, setThumbSize] = useState(0)
   const [trackWidth, setTrackWidth] = useState(0)
-  const [isScrollable, setIsScrollable] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-
 
   const filteredItems =
     filter === 'show all' ? items : items.filter(i => i.category === filter)
 
 
   // Scroll logic
-  const updateScrollState = useCallback(() => {
-    const container = containerRef.current
-    if (!container) return
-
+  const updateScrollState = useCallback((container: HTMLDivElement) => {
     const { scrollLeft, scrollWidth, clientWidth } = container
     const maxScroll = scrollWidth - clientWidth
+    const scrollable = maxScroll > EPSILON
 
     const progress = maxScroll > 0 ? Math.min(scrollLeft / maxScroll, 1) : 0
-
     setScrollProgress(progress)
     setThumbSize(Math.min(clientWidth / scrollWidth, 1))
     setTrackWidth(clientWidth)
-    setIsScrollable(scrollWidth > clientWidth + 1)
+
+    return {
+      canScrollPrev: scrollLeft > EPSILON,
+      canScrollNext: scrollLeft < maxScroll - EPSILON,
+      scrollable,
+    }
   }, [])
 
 
-  // Button to scroll right on-click 
-  const scrollNext = () => {
-    const container = containerRef.current
-    if (!container) return
+  // Scroll to card onClick
+  const scrollToCard = useCallback(
+    (direction: 1 | -1) => {
+      const container = containerRef.current
+      if (!container) return
 
-    const firstCard = container.children[0] as HTMLElement
-    if (!firstCard) return
+      const cards = Array.from(container.children) as HTMLElement[]
+      if (!cards.length) return
 
-    const cardWidth = firstCard.getBoundingClientRect().width
+      // Find first visible card index
+      const visibleIndex = cards.findIndex(
+        card => card.offsetLeft + card.offsetWidth > container.scrollLeft + EPSILON
+      )
+      if (visibleIndex === -1) return
 
-    const styles = window.getComputedStyle(container)
-    const gap = parseInt(styles.columnGap || styles.gap || '0', 10)
+      const targetIndex = Math.min(
+        Math.max(0, visibleIndex + direction),
+        cards.length - 1
+      )
 
-    const step = cardWidth + gap
-    const maxScroll = container.scrollWidth - container.clientWidth
+      const targetCard = cards[targetIndex]
 
-    const currentIndex = Math.round(container.scrollLeft / step)
-    const nextIndex = currentIndex + 1
+      // Calculate scrollLeft to align the target card at the start
+      const scrollLeft = targetCard.offsetLeft
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+    },
+    []
+  )
 
-    let target = nextIndex * step
-
-    if (target > maxScroll) target = maxScroll
-
-    if (container.scrollLeft >= maxScroll - 1) {
-      container.scrollTo({ left: 0, behavior: 'smooth' })
-      return
-    }
-
-    container.scrollTo({ left: target, behavior: 'smooth' })
-  }
+  
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
 
 
   // Scroll Handler
   const handleScroll = useCallback(() => {
-    updateScrollState()
+    const container = containerRef.current
+    if (!container) return
+
+    const { canScrollPrev, canScrollNext } = updateScrollState(container)
+    setCanScrollPrev(canScrollPrev)
+    setCanScrollNext(canScrollNext)
   }, [updateScrollState])
 
 
@@ -104,33 +115,41 @@ function Slider({ items }: SliderProps) {
     if (!container) return
 
     container.addEventListener('scroll', handleScroll, { passive: true })
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll)
-    }
+    return () => container.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
 
-  // Calculates the dimensions of the horizontal scroll bar
+  // Resize observer
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    const observer = new ResizeObserver(updateScrollState)
+    const observer = new ResizeObserver(() => {
+      const { canScrollPrev, canScrollNext } = updateScrollState(container)
+      setCanScrollPrev(canScrollPrev)
+      setCanScrollNext(canScrollNext)
+    })
+
     observer.observe(container)
+
+    // Initial state
+    const { canScrollPrev, canScrollNext } = updateScrollState(container)
+    setCanScrollPrev(canScrollPrev)
+    setCanScrollNext(canScrollNext)
 
     return () => observer.disconnect()
   }, [filteredItems, updateScrollState])
 
-
-  // Reset scroll when changing filter
+  
+  // Reset scroll on filter change
   useEffect(() => {
-    containerRef.current?.scrollTo({ left: 0 })
+    containerRef.current?.scrollTo({ left: 0, behavior: 'smooth' })
   }, [filter])
 
 
   return (
     <div className='container flex flex-col justify-center gap-4 py-10'>
+      {/* Filter Buttons */}
       <div className='flex flex-row gap-2'>
         {categories.map(category => (
           <Button
@@ -145,6 +164,7 @@ function Slider({ items }: SliderProps) {
         ))}
       </div>
 
+      {/* Slider */}
       <div className='relative'>
         <div
           ref={containerRef}
@@ -153,15 +173,29 @@ function Slider({ items }: SliderProps) {
           {filteredItems.map(item => <SliderCard key={item.link} item={item} />)}
         </div>
 
-        <Button
-          variant='secondary'
-          iconOnly
-          onClick={scrollNext}
-          disabled={!isScrollable}
-          className='absolute right-0 md:-right-5 top-1/2 transform -translate-y-1/2'
-        >
-          <ArrowIcon className='size-5' />
-        </Button>
+        {/* Navigation Buttons */}
+        {canScrollPrev && (
+          <Button
+            variant='secondary'
+            iconOnly
+            aria-label='Scroll previous'
+            onClick={() => scrollToCard(-1)}
+            className='absolute left-0 md:-left-5 top-1/2 transform -translate-y-1/2'
+          >
+            <ArrowLeftIcon className='size-5' />
+          </Button>
+        )}
+        {canScrollNext && (
+          <Button
+            variant='secondary'
+            iconOnly
+            aria-label='Scroll next'
+            onClick={() => scrollToCard(1)}
+            className='absolute right-0 md:-right-5 top-1/2 transform -translate-y-1/2'
+          >
+            <ArrowRightIcon className='size-5' />
+          </Button>
+        )}
       </div>
 
       {/* Scroll Track */}
