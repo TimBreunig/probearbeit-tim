@@ -3,19 +3,6 @@
 The following sections provide a short overview over the technology used for my current implementation as well as some potential future steps that would take the project further.
 
 
-<details id="readme-top">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#built-with">🔨 Built With</a>
-    </li>
-    <li>
-      <a href="#further-steps">🚀 Potential Further Steps</a>
-    </li>
-  </ol>
-</details>
-
-
 
 ## 🔨 Built With
 
@@ -27,7 +14,7 @@ The landing page was implemented using the following frameworks / libraries:
 * [![Tailwind][TailwindCSS]][TailwindCSS-url]
 * [![FramerMotion][FramerMotion]][FramerMotion-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#trial-project-landing-page">back to top</a>)</p>
 
 
 
@@ -40,7 +27,7 @@ To further enhance both UX/UI and implementation beyond the scope of a limited-t
 * For bigger project scope: refactor Slider component into a custom hook to increase scalability
 * Further unit / integration tests for high-logic components
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#trial-project-landing-page">back to top</a>)</p>
 
 
 
