@@ -1,9 +1,11 @@
+/// <reference types="vitest/config" />
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgrPlugin from 'vite-plugin-svgr'
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
+
 export default defineConfig({
   plugins: [
     react(),
@@ -12,5 +14,10 @@ export default defineConfig({
   ],
   optimizeDeps: {
     include: ['react/jsx-runtime', 'react/jsx-dev-runtime']
-  }
+  },
+   test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/_tests_/setup.ts',
+  },
 })
