@@ -3,6 +3,20 @@
 The following sections provide a short overview over the technology used for my current implementation as well as some potential future steps that would take the project further.
 
 
+<details id="readme-top">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#built-with">Built With</a>
+    </li>
+    <li>
+      <a href="#further-steps">Potential Further Steps</a>
+    </li>
+  </ol>
+</details>
+
+
+<span id="#built-with">
 ## 🔨 Built With
 
 The landing page was implemented using the following frameworks / libraries:
@@ -16,6 +30,7 @@ The landing page was implemented using the following frameworks / libraries:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<span id="#further-steps">
 ## 🚀 Potential Further Steps
 
 To further enhance both UX/UI and implementation beyond the scope of a limited-time project, here are some potential future measures I would consider in a production landscape.
@@ -26,6 +41,7 @@ To further enhance both UX/UI and implementation beyond the scope of a limited-t
 * Further unit / integration tests for high-logic components
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- MARKDOWN LINKS -->
