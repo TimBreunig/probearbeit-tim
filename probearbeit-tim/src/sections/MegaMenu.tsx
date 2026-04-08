@@ -45,7 +45,7 @@ const megaButtons: LinkProps[] = [
 
 function MegaMenu() {
   return (
-    <div className='absolute container w-full top-full left-0 py-10 grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border-b border-gray-70 shadow-[0_40px_40px_rgba(0,0,0,0.04)]'>
+    <div className='absolute container left-0 right-0 top-full w-screen py-10 grid grid-cols-1 md:grid-cols-3 gap-4 bg-white border-b border-gray-70 shadow-[0_40px_40px_rgba(0,0,0,0.04)]'>
       <div className='flex flex-col justify-between items-start'>
         <div className='flex flex-col gap-8'>
           <h2 className='h2'>

@@ -39,7 +39,7 @@ function Header() {
 
   
   return (
-    <div className='w-full container sticky top-0 h-20 md:h-22 flex justify-between items-center bg-white border-b border-gray-70 z-50'>
+    <header className='w-full container sticky top-0 h-20 md:h-22 flex justify-between items-center bg-white border-b border-gray-70 z-50'>
       <Link to='/' aria-label='Home Button'>
         <img src={logo} alt='Logoips logo' className='h-8'/>
       </Link>
@@ -49,6 +49,8 @@ function Header() {
         variant='underline'
         iconOnly
         aria-label={isMobileOpen ? 'Close Menu' : 'Open Menu'}
+        aria-expanded={isMobileOpen}
+        aria-controls='main-navigation'
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         className='md:hidden rounded-full hover:bg-gray-70 active:bg-gray-70'
       >
@@ -59,29 +61,27 @@ function Header() {
         
       </Button>
 
-      <div
+      <nav
 				className={`block md:hidden fixed left-0 right-0 bottom-0 top-20 md:top-22 z-40 bg-white transform transition-transform duration-300 ease-in-out
           ${isMobileOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
 			>
-				<ul className='container flex flex-col items-start'>
-          <NavList
-            items={navItems}
-            isMegaOpen={isMegaOpen}
-            setIsMegaOpen={setIsMegaOpen}
-          />
-        </ul>
-		  </div>
-
-      {/* Desktop Navigation Menu */}
-      <ul className='hidden md:flex items-center'>
         <NavList
           items={navItems}
           isMegaOpen={isMegaOpen}
           setIsMegaOpen={setIsMegaOpen}
         />
-      </ul>
-    </div>
+		  </nav>
+
+      {/* Desktop Navigation Menu */}
+      <nav className='hidden md:block'>
+        <NavList
+          items={navItems}
+          isMegaOpen={isMegaOpen}
+          setIsMegaOpen={setIsMegaOpen}
+        />
+      </nav>
+    </header>
   )
 }
 

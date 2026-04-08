@@ -12,7 +12,7 @@ type NavListProps = {
 
 function NavList({ items, isMegaOpen, setIsMegaOpen }: NavListProps) {
   return (
-    <>
+    <ul className="container flex flex-col md:flex-row items-start md:items-center md:px-0">
       {items.map((item, i) => {
         const Component = item.component
 
@@ -47,7 +47,7 @@ function NavList({ items, isMegaOpen, setIsMegaOpen }: NavListProps) {
           </li>
         )
       })}
-    </>
+    </ul>
   )
 }
 
